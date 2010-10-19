@@ -1,24 +1,18 @@
-After years of automation, people no longer are able to calculate their own bowling scores, so it is your responsibility to write a bowling score program for them. Using your favorite programming language, write a class or method for calculating a player's totals.
+Description
 
-For example, you could write the following:
+For an array of integers greater than or equal to -1, we define a block as a slice of the array consisting of adjacent non-negative integers. For example, the array [ 1, 2, 3, -1, 4, 5, -1, 6, -1, -1 ] contains three blocks:
 
-    george = Bowler()
-    george.rolls(3)
-    george.rolls(6)
-    george.rolls(10)
-   ...
-   println "George's total is " + george.getTotal()
+    block 1 = 1, 2, 3
+    block 2 = 4, 5
+    block 3 = 6 
 
-or, if you prefer to take a one function does all approach:
+Write a function for reversing the array, but not reversing the content of the blocks themselves.
 
-   rolls = [ 3, 6, 10, .... ]
-   println "George's total is " + bowlingTotal( rolls )
+Some example (and test cases);
 
-If you don't know how bowling is scored, you can find the information here
+    block_reverse( [ 1, 2, 3 ] ) = [ 1, 2, 3 ]
+    block_reverse( [ -1 ] = [ -1 ]
+    block_reverse( [ 1, 2, -1, 3] ) = [ 3, -1, 1, 2 ]
+    block_reverse( [ -1, -1, 1, 2, 3, -1, 2, 4, 6, 8 ] ) = [ 2, 4, 6, 8, -1, 1, 2, 3, -1, -1 ] 
 
-And some test cases:
-
-    A perfect game of 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 should total 300 (note the two extra balls at the end, because the last frame was a strike)
-    A game of spares 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1 should total 110 (with one extra ball at the end because the last frame was a spare)
-    A game of spares 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9 should total 190 (also with the extra ball)
-    A game with no spares 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3 should total 40 
+And thanks to Svetlana for suggesting this problem. 
