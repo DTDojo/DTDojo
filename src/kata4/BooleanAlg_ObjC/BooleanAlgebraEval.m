@@ -16,12 +16,13 @@
     NSString *top = [stack lastObject];
     [stack removeLastObject];
     if ([top isEqualToString:@"!"]) {
+        NSString *toAdd = nil;
         if ([sub isEqualToString:@"0"]) {
-            [stack addObject:@"1"];
+            toAdd = @"1";
         } else {
-            [stack addObject:@"0"];
+            toAdd = @"0";
         }
-        
+        [self evaluateZeroOne: stack sub: toAdd];
     } else {
         NSString *left = [stack lastObject];
         [stack removeLastObject];

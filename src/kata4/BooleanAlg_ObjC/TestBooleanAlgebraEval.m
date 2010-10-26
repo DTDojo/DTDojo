@@ -85,5 +85,8 @@
     NSString *value = [evaluator eval:@"1x0"];
     STAssertTrue(value==nil, value);
 }
-
+- (void) testOneAndNotZero{
+    NSString *value = [evaluator eval:@"1*!0"];
+    STAssertTrue([value isEqualToString:@"1"],value);
+}
 @end
