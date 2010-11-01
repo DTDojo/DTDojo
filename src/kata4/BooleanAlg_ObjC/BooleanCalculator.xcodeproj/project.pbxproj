@@ -1,0 +1,410 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		4F36685112793113004865D0 /* BooleanAlgebraEval.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5D80EF12736D9B008C5BB9 /* BooleanAlgebraEval.m */; };
+		4F36685312793113004865D0 /* BooleanCalculatorAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5D80F112736D9B008C5BB9 /* BooleanCalculatorAppDelegate.m */; };
+		4F5A70E51276B6CB00C42EB6 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F5A70E41276B6CB00C42EB6 /* MainWindow.xib */; };
+		4F5A70EE1276B73600C42EB6 /* CalculatorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F5A70ED1276B73600C42EB6 /* CalculatorViewController.xib */; };
+		4F5D811C12736F7A008C5BB9 /* TestBooleanAlgebraEval.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5D7E471273618D008C5BB9 /* TestBooleanAlgebraEval.m */; };
+		4F5D813C127370B0008C5BB9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		4F5D817312737232008C5BB9 /* BooleanAlgebraEval.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5D80EF12736D9B008C5BB9 /* BooleanAlgebraEval.m */; };
+		4FDF32EF1276CA760091D05D /* CalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDF32EE1276CA760091D05D /* CalculatorViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D6058910D05DD3D006BFB54 /* BooleanCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BooleanCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4F2D254B1279618600ADA4FC /* TestBooleanAlgebraEval.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestBooleanAlgebraEval.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F5A70E41276B6CB00C42EB6 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		4F5A70ED1276B73600C42EB6 /* CalculatorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalculatorViewController.xib; sourceTree = "<group>"; };
+		4F5D7E471273618D008C5BB9 /* TestBooleanAlgebraEval.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestBooleanAlgebraEval.m; path = Classes/TestBooleanAlgebraEval.m; sourceTree = "<group>"; };
+		4F5D80EE12736D9B008C5BB9 /* BooleanAlgebraEval.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooleanAlgebraEval.h; sourceTree = "<group>"; };
+		4F5D80EF12736D9B008C5BB9 /* BooleanAlgebraEval.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooleanAlgebraEval.m; sourceTree = "<group>"; };
+		4F5D80F012736D9B008C5BB9 /* BooleanCalculatorAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooleanCalculatorAppDelegate.h; sourceTree = "<group>"; };
+		4F5D80F112736D9B008C5BB9 /* BooleanCalculatorAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooleanCalculatorAppDelegate.m; sourceTree = "<group>"; };
+		4F5D80F312736D9B008C5BB9 /* TestBooleanAlgebraEval.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestBooleanAlgebraEval.m; sourceTree = "<group>"; };
+		4F5D811612736F43008C5BB9 /* TestBooleanAlgebraEval-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TestBooleanAlgebraEval-Info.plist"; sourceTree = "<group>"; };
+		4FDF32ED1276CA760091D05D /* CalculatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorViewController.h; sourceTree = "<group>"; };
+		4FDF32EE1276CA760091D05D /* CalculatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorViewController.m; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* BooleanCalculator-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BooleanCalculator-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F5D811212736F43008C5BB9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F5D813C127370B0008C5BB9 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* BooleanCalculator.app */,
+				4F2D254B1279618600ADA4FC /* TestBooleanAlgebraEval.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				4F5D80ED12736D9B008C5BB9 /* Classes */,
+				4F5D7EBA12736660008C5BB9 /* TestClasses */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+				4F5D811612736F43008C5BB9 /* TestBooleanAlgebraEval-Info.plist */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4F5A70E41276B6CB00C42EB6 /* MainWindow.xib */,
+				8D1107310486CEB800E47090 /* BooleanCalculator-Info.plist */,
+				4F5A70ED1276B73600C42EB6 /* CalculatorViewController.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4F5D7EBA12736660008C5BB9 /* TestClasses */ = {
+			isa = PBXGroup;
+			children = (
+				4F5D7E471273618D008C5BB9 /* TestBooleanAlgebraEval.m */,
+			);
+			name = TestClasses;
+			sourceTree = "<group>";
+		};
+		4F5D80ED12736D9B008C5BB9 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				4F5D80EE12736D9B008C5BB9 /* BooleanAlgebraEval.h */,
+				4FDF32ED1276CA760091D05D /* CalculatorViewController.h */,
+				4FDF32EE1276CA760091D05D /* CalculatorViewController.m */,
+				4F5D80EF12736D9B008C5BB9 /* BooleanAlgebraEval.m */,
+				4F5D80F012736D9B008C5BB9 /* BooleanCalculatorAppDelegate.h */,
+				4F5D80F112736D9B008C5BB9 /* BooleanCalculatorAppDelegate.m */,
+				4F5D80F312736D9B008C5BB9 /* TestBooleanAlgebraEval.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* BooleanCalculator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "BooleanCalculator" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BooleanCalculator;
+			productName = BooleanCalculator;
+			productReference = 1D6058910D05DD3D006BFB54 /* BooleanCalculator.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4F5D811412736F43008C5BB9 /* TestBooleanAlgebraEval */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F5D811912736F44008C5BB9 /* Build configuration list for PBXNativeTarget "TestBooleanAlgebraEval" */;
+			buildPhases = (
+				4F5D811012736F43008C5BB9 /* Resources */,
+				4F5D811112736F43008C5BB9 /* Sources */,
+				4F5D811212736F43008C5BB9 /* Frameworks */,
+				4F5D811312736F43008C5BB9 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TestBooleanAlgebraEval;
+			productName = TestBooleanAlgebraEval;
+			productReference = 4F2D254B1279618600ADA4FC /* TestBooleanAlgebraEval.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = Neal;
+			};
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "BooleanCalculator" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* BooleanCalculator */,
+				4F5D811412736F43008C5BB9 /* TestBooleanAlgebraEval */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F5A70E51276B6CB00C42EB6 /* MainWindow.xib in Resources */,
+				4F5A70EE1276B73600C42EB6 /* CalculatorViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F5D811012736F43008C5BB9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4F5D811312736F43008C5BB9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\necho \"\" > /tmp/RunUnitTests.out \n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"  1> /tmp/RunUnitTests.out \n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F36685112793113004865D0 /* BooleanAlgebraEval.m in Sources */,
+				4F36685312793113004865D0 /* BooleanCalculatorAppDelegate.m in Sources */,
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				4FDF32EF1276CA760091D05D /* CalculatorViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F5D811112736F43008C5BB9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F5D817312737232008C5BB9 /* BooleanAlgebraEval.m in Sources */,
+				4F5D811C12736F7A008C5BB9 /* TestBooleanAlgebraEval.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = BooleanCalculator_Prefix.pch;
+				INFOPLIST_FILE = "BooleanCalculator-Info.plist";
+				PRODUCT_NAME = BooleanCalculator;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = BooleanCalculator_Prefix.pch;
+				INFOPLIST_FILE = "BooleanCalculator-Info.plist";
+				PRODUCT_NAME = BooleanCalculator;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4F5D811712736F44008C5BB9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "TestBooleanAlgebraEval-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = TestBooleanAlgebraEval;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		4F5D811812736F44008C5BB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "TestBooleanAlgebraEval-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = TestBooleanAlgebraEval;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos4.1;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				SDKROOT = iphoneos4.1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "BooleanCalculator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F5D811912736F44008C5BB9 /* Build configuration list for PBXNativeTarget "TestBooleanAlgebraEval" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F5D811712736F44008C5BB9 /* Debug */,
+				4F5D811812736F44008C5BB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "BooleanCalculator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
