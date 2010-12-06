@@ -39,4 +39,11 @@ public class TestParseRomanNumerals {
             String testResults = tester.parse();
             assertEquals("Result","XLVII", testResults );
     }
+    @Test
+    public void test5() {
+            int input = 3888;
+            ParseRomanNumerals tester = new ParseRomanNumerals(input);
+            String testResults = tester.parse();
+            assertEquals("Result","MMMDCCCLXXXVIII", testResults );
+    }
 }
