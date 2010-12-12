@@ -3,12 +3,14 @@
 
 (load "javacount")
 
-(deftest test-no-comments
+(deftest test-loc
   (is (= 4 (java-loc "fourlinefile.java")))
   (is (= 3 (java-loc "hasblankspace.java")))
   (is (= 3 (java-loc "threelinesandcomment.java")))
   (is (= 4 (java-loc "emptybraces.java")))
-  (is (= 4 (java-loc "multilinecomments.java")))
   )
 
+(deftest multi-line
+  (is (= 4 (java-loc "multilinecomments.java")))
+  )
 (run-tests)

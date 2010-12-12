@@ -1,3 +1,6 @@
+#
+# This is the one-parent solution.
+# 
 class FamilyTree
 
   def initialize()

@@ -43,14 +43,14 @@ class SecretSantaTest < Test::Unit::TestCase
 
   def create_big_list
     big_list = [ ]
-    first_names = [ "Alpha", "Bravo", "Charlie" ]
-    last_names =  [ "Brown", "Gray", "Black" ]
+    first_names = [ "Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf" ]
+    last_names =  [ "Brown", "Gray", "Black", "White", "Silver" ]
     first_names.each do |first_name|
       last_names.each do |last_name|
         big_list << "#{first_name} #{last_name}"
       end
     end
-    return big_list
+    return big_list.shuffle
   end
 
 end
