@@ -1,12 +1,10 @@
 (ns loc
-  (:use clojure.contrib.duck-streams))
+  (:require [clojure.contrib.duck-streams :as cljio ]))
 
 (defn rm-single-line-comment
-  "strips //... and /*...*/  comments from line"
-  [ line ]
-  (.replaceAll
-   (.replaceAll line "//.*$" "")
-   "/\\*([^*](\\*[^/])?)*\\*/" ""))
+  "strips //... comments from each line"
+  [ lines ]
+  (map (fn [line] (.replaceAll line "//.*$" "")) lines))
 
 (defn rm-empty-lines
   "removes all empty lines from list"
@@ -24,6 +22,7 @@
   (filter not-brace-only? lines))
 
 (defn rm-half-comments [lines]
+  "strip '/*...\n' and '...*/' from each line"
   (defn rm-end [line] (.replaceAll line ".*\\*/" ""))
   (defn rm-start [line] (.replaceAll line "/\\*.*$" ""))
   (map (fn [ x ] (rm-end (rm-start x))) lines))
@@ -40,16 +39,19 @@
 	    (and in-comment? (not (ends-mc? head))) (scm-it in-comment? l1 (rest l2))
             :else (scm-it (starts-mc? head) (list* head l1) (rest l2)))))
   (scm-it false '() lines))
-	    
+
+(defn rm-bracketed-comments [lines]
+  (defn rm-single-line-bracketed [line] (.replaceAll line "/\\*([^*](\\*[^/])?)*\\*/" ""))
+  (rm-half-comments (rm-comment-middle (map rm-single-line-bracketed lines))))
+
 (defn java-loc
   "counts the number of code lines in a java file"
   [ filename ]
-  (let [ lines (read-lines filename)
+  (let [ lines (cljio/read-lines filename)
        ]
     (count (rm-empty-lines
 	    (rm-braces-only-lines
-	     (rm-half-comments
-	       (rm-comment-middle 
-	          (map rm-single-line-comment lines))))))))
+	     (rm-single-line-comment
+	      (rm-bracketed-comments lines)))))))
 	
 
