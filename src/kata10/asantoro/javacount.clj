@@ -6,7 +6,7 @@
   [ line ]
   (.replaceAll
    (.replaceAll line "//.*$" "")
-   "/\\*[^/]*\\*/" ""))
+   "/\\*([^*](\\*[^/])?)*\\*/" ""))
 
 (defn rm-empty-lines
   "removes all empty lines from list"
