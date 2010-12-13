@@ -35,12 +35,12 @@ while(<FILE>)
     else
     {
         $line_count++;
-        //print "$line\n";
+        ##print "$line\n";
     }
 
 
 }
 
-print "$file_name:$line_count lines\n";
+print "$input_file:$line_count\n";
 
 exit 0;
