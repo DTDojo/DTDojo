@@ -20,6 +20,11 @@ while(<FILE>)
         ##only '{' or '}', skip
         next;
     }
+    if($line =~ /^\s*\/\*.*\*\/\s*/ ){
+        ### /*  start and end of multiline comment
+        $isMultilineComment = 0;
+        next;
+    }
     if($line =~ /^\s*\/\*/ ){
         ### /*  start of multiline comment
         $isMultilineComment = 1;
