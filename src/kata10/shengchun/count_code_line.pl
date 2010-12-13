@@ -16,7 +16,7 @@ while(<FILE>)
         ##single comment line, skip
         next;
     }
-    if($line =~ /^\s*[\{\}]\s*$/ ){
+    if($line =~ /^\s*[\{\}]\s*(\/\/.*)?$/ ){
         ##only '{' or '}', skip
         next;
     }
@@ -35,12 +35,12 @@ while(<FILE>)
     else
     {
         $line_count++;
-        print "$line\n";
+        //print "$line\n";
     }
 
 
 }
 
-print "file $file_nale has $line_count lines of code\n";
+print "$file_name:$line_count lines\n";
 
 exit 0;
