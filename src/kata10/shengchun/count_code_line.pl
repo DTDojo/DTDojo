@@ -19,6 +19,10 @@ while(<FILE>)
     if($line =~ /^\s*[\{\}]\s*(\/\/.*)?$/ ){
         ##only '{' or '}', skip
         next;
+}
+    if($line =~ /^\s*\{\s*\}\s*$/ ){
+        ##only '{' or '}', skip
+        next;
     }
     if($line =~ /^\s*\/\*.*\*\/\s*/ ){
         ### /*  start and end of multiline comment
