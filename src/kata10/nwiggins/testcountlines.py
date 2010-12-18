@@ -8,7 +8,11 @@ from countlines import CountLines
 
 class Test(unittest.TestCase):
 
-
+    def testNestedSingleLine(self):
+        testaroo = CountLines()
+        newString = testaroo.strippedMultiLineComments('Test a st/*hi*/ri/*blah*/ng lik/*blahblah*/e this')
+        assert newString == 'Test a string like this'
+        pass
     def testNestedMultiLine(self):
         testaroo = CountLines()
         newString = testaroo.strippedMultiLineComments('This is a /*t\ne/*s*/\n/*t*/\n*/ of the JavaScript RegExp object')
@@ -41,7 +45,7 @@ class Test(unittest.TestCase):
         javaFile = f.read()
         testaroo = CountLines()
         lineCount = testaroo.numberOfLines(javaFile)
-        assert lineCount == 6
+        assert lineCount == 4
         pass
     def testJavaHasBlankSpaceFileCount(self):
         f = open('../asantoro/hasblankspace.java')
@@ -55,14 +59,14 @@ class Test(unittest.TestCase):
         javaFile = f.read()
         testaroo = CountLines()
         lineCount = testaroo.numberOfLines(javaFile)
-        assert lineCount == 5
+        assert lineCount == 4
         pass
     def testJavaThreeLineFileCount(self):
         f = open('../asantoro/threelinefile.java')
         javaFile = f.read()
         testaroo = CountLines()
         lineCount = testaroo.numberOfLines(javaFile)
-        assert lineCount == 4
+        assert lineCount == 3
         pass
     def testJavaThreeLinesAndCommentFileCount(self):
         f = open('../asantoro/threelinesandcomment.java')
