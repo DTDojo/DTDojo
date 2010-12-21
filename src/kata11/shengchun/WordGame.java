@@ -196,8 +196,8 @@ public class WordGame {
         }
         String start =  w1.dictionary.get((int)beginIndex);
         String end = w1.dictionary.get((int)endIndex);
-        //start= "bung";
-        //end = "bund";
+        start= "book";
+        end = "tree";
         //end = "bind";
         w1.process(start,end );
     }
