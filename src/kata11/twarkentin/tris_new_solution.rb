@@ -21,7 +21,7 @@ Is intersection > 0?
 
 require 'yaml'
 $word_map = YAML::load (File.read 'map.txt')
-dict_array = (File.read 'C:\Documents and Settings\twarkent\Desktop\programs\wordgame_kata\real_dictionary.txt').split("\n")
+dict_array = (File.read 'real_dictionary.txt').split("\n")
 
 
 def connector_finder(word1,word2,final_word2,final_array)
