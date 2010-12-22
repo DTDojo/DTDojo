@@ -10,8 +10,8 @@ wl.load_file('../../../fiveletterwords.txt')
 wl.load_file('../../../fourletterwords.txt')
 
 #puts wg = WordGame.new('tree','leaf',wl.words)
-#puts wg = WordGame.new('tree','leaf',wl.words)
-puts wg = WordGame.new('slams','slony',wl.words)
+puts wg = WordGame.new('tree','leaf',wl.words)
+#puts wg = WordGame.new('slams','slony',wl.words)
 puts "Final Final List: #{wg.final_list.inspect}"
 
 
