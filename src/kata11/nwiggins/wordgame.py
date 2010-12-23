@@ -50,7 +50,9 @@ class WordGame(object):
             del queue[0]
             currentNodeSubMap = map[currentNode]
             if currentNodeSubMap["adjacentEdges"] == None:
-                currentNodeSubMap["adjacentEdges"] = self.getAdjacentNodes(currentNode,currentNodeSubMap["startsWith"],currentNodeSubMap["endsWith"])
+                startsWithMap = currentNodeSubMap["startsWith"]
+                endsWithMap = currentNodeSubMap["endsWith"]
+                currentNodeSubMap["adjacentEdges"] = self.getAdjacentNodes(currentNode,startsWithMap,endsWithMap)
             adjacentEdges = list(currentNodeSubMap["adjacentEdges"]) 
             for x in adjacentEdges:
                 if successorMap.has_key(x)==False:

@@ -43,6 +43,10 @@ class Test(unittest.TestCase):
         assert len(test) == 4
         assert test == ['boat', 'goat', 'goad', 'toad']
         pass
+    def testLongGame(self):
+        test = self.game.getPath('slams', 'sonly')
+        assert len(test) == 10
+        pass
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
     unittest.main()
