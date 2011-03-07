@@ -1,0 +1,15 @@
+require 'rake'
+
+CLASSPATH="out:lib/*"
+
+task :compile do 
+  `scalac -d out  -cp "#{CLASSPATH}" src/*.scala`
+end
+
+task :test do
+  tests = `ls out/*Test.class`.split().map { |c| c[0..-7] }
+  tests.each do |test|
+    `scala -cp "#{CLASSPATH}" org.scalatest.tools.Runner -p . -o #{test}`
+  end
+end
+
