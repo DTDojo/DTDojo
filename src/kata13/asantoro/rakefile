@@ -1,15 +1,21 @@
 require 'rake'
+require 'find'
 
 CLASSPATH="out:lib/*"
 
+task :default => [ :compile, :test ]
+
 task :compile do 
-  `scalac -d out  -cp "#{CLASSPATH}" src/*.scala`
+  puts `scalac -d out  -cp "#{CLASSPATH}" src/*.scala`
 end
 
 task :test do
-  tests = `ls out/*Test.class`.split().map { |c| c[0..-7] }
-  tests.each do |test|
-    `scala -cp "#{CLASSPATH}" org.scalatest.tools.Runner -p . -o #{test}`
+  Find.find("out") do |f|
+    if f.end_with?("Test.class")
+      test_class = f.to_s.split(/\//)[1..-1].join(".") # removes "out/...", substitutes '.' for '/'
+      test_class = test_class[0..-7] # removes .class
+      puts `scala -cp "#{CLASSPATH}" org.scalatest.tools.Runner -p . -o -s #{test_class}`
+    end
   end
 end
 
