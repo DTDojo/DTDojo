@@ -20,3 +20,18 @@ class Square {
   }
 
 }
+
+
+class Group {
+
+  var groupSquares = new Array[Square](9)
+  var index = 0
+
+  def add(square:Square) = {
+    groupSquares(index) = square
+    index += 1
+  }
+
+}
+
+

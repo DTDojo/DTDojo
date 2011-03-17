@@ -9,6 +9,9 @@ task :compile do
   puts `scalac -d out  -cp "#{CLASSPATH}" src/*.scala`
 end
 
+# Runs a unit test consisting of all classes in the 
+# out directory (or its subdirectories) that have a name 
+# of the form *Test.class
 task :test do
   Find.find("out") do |f|
     if f.end_with?("Test.class")
