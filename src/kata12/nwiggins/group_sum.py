@@ -5,30 +5,32 @@ Created on Apr 9, 2011
 '''
 class GroupSum(object):
     def groupSum(self, numberArray, sum):
-        sortedNumbers = sorted(numberArray, reverse=True)
-        arrayLength = len(sortedNumbers)
-        negativeNumbers = []
+        primaryNumbers = sorted(numberArray, reverse=True)
+        arrayLength = len(primaryNumbers)
+        secondaryNumbers = []
         for x in range(arrayLength-1,0,-1):
-            currentValue = sortedNumbers[x]
+            currentValue = primaryNumbers[x]
             if currentValue < 0:
-                negativeNumbers.append(currentValue)
-                del sortedNumbers[x]
+                secondaryNumbers.append(currentValue)
+                del primaryNumbers[x]
             elif currentValue >= 0:
                 break
-        for x in range(0,len(sortedNumbers)):
-            if sortedNumbers[x] == sum:
+        if sum < 0:
+            secondaryNumbers, primaryNumbers = primaryNumbers,secondaryNumbers
+        for x in range(0,len(primaryNumbers)):
+            if primaryNumbers[x] == sum:
                 currentList = []
-                currentList.append(sortedNumbers[x])
+                currentList.append(primaryNumbers[x])
                 return currentList
-            elif sortedNumbers[x] < sum:
-                subList = self.groupSum(sortedNumbers[x+1:],sum-sortedNumbers[x])
+            elif primaryNumbers[x] < sum:
+                subList = self.groupSum(primaryNumbers[x+1:],sum-primaryNumbers[x])
                 if subList != None:
-                    subList.append(sortedNumbers[x])
+                    subList.append(primaryNumbers[x])
                     return subList
-        for x in range(0, len(negativeNumbers)):
-            currentNegative = negativeNumbers[x]
-            negativeList = negativeNumbers[x:]
-            negativeList.extend(sortedNumbers)
+        for x in range(0, len(secondaryNumbers)):
+            currentNegative = secondaryNumbers[x]
+            negativeList = secondaryNumbers[x:]
+            negativeList.extend(primaryNumbers)
             subList = self.groupSum(negativeList, sum-currentNegative)
             if subList != None:
                 subList.append(currentNegative)
