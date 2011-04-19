@@ -8,7 +8,7 @@ class GroupSum(object):
         primaryNumbers = sorted(numberArray, reverse=True)
         arrayLength = len(primaryNumbers)
         secondaryNumbers = []
-        for x in range(arrayLength-1,0,-1):
+        for x in range(arrayLength-1,-1,-1):
             currentValue = primaryNumbers[x]
             if currentValue < 0:
                 secondaryNumbers.append(currentValue)
