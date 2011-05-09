@@ -31,7 +31,7 @@ class Test(unittest.TestCase):
         solver = SudokuSolver()
         solver.solve('../evilpuzzle.in')
         result = solver.printBoard()
-        assert 'x' not in result, result
+        assert 'x' not in result, result +'\n' + solver.printTilePossibleValues()
         pass
 
 
