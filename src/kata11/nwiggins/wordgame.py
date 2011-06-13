@@ -6,7 +6,6 @@ Created on Dec 20, 2010
 
 class WordGame(object):
 
-
     def __init__(self):
         self.fourLetterMap = self.createNodeMap("../fourletterwords.txt")
         self.fiveLetterMap = self.createNodeMap("../fiveletterwords.txt")
@@ -81,6 +80,3 @@ class WordGame(object):
             if sum(x != y for x,y in zip(currentNode,adj)) == 1:
                 masterList.append(adj)
         return masterList
-        
-        
-        
