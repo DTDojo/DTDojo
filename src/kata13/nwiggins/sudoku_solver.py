@@ -102,21 +102,25 @@ class Board:
                         del affectedTiles[0]
                         affectedTiles = list(set(affectedTiles))
 
-    def updateGroupTilesOnFunction(self, functionName):
+    def updateGroupTilesOnFunction(self, applyRule):
         tilesUpdated = list()
         for row in range(0, 9):
             for column in range(0, 9):
                 tile = self.board[row][column]
                 groupList = self.tileToGroups[tile]
                 for group in groupList:
-                    tilesUpdated.extend(getattr(group, functionName)())
+                    tilesUpdated.extend(applyRule(group))
         self.updateAffectedTiles(tilesUpdated)
             
     def findUniqueValues(self):
-        self.updateGroupTilesOnFunction('findOnlyOneInGroup')
+        def applyRule(group):
+            return group.findOnlyOneInGroup()
+        self.updateGroupTilesOnFunction(applyRule)
     
     def ruleOfK(self):
-        self.updateGroupTilesOnFunction('applyRuleOfK')
+        def applyRule(group):
+            return group.applyRuleOfK()
+        self.updateGroupTilesOnFunction(applyRule)
             
     def updateGroupsByTile(self, tile):
         groupList = self.tileToGroups[tile]
