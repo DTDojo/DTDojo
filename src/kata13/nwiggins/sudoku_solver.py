@@ -277,8 +277,9 @@ class Group:
             keysList = keys.split(',')
             if tilesList != None and keysList != None and len(tilesList) == len(keysList):
                 for value in keysList:
+                    value = int(value)
                     for tile in (set(self.tiles).difference(tilesList)):
-                        tile.removeValueFromPossibleValues(int(value))
+                        tile.removeValueFromPossibleValues(value)
                         listOfAffectedTiles.append(tile)
         return listOfAffectedTiles
         
