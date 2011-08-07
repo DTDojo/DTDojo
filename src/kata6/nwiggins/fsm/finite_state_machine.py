@@ -4,7 +4,7 @@ Created on Nov 4, 2010
 @author: nwiggins
 '''
 
-class FiniteStateMachine(object):
+class FiniteStateMachine:
 
     def __init__(self, symbols, states, transitions):
         self.acceptableInputs = set(symbols.split(','))
@@ -16,10 +16,10 @@ class FiniteStateMachine(object):
                 raise Exception('invalid state definition')
             stateName = stateDefPartials[0]
             stateStatus = stateDefPartials[1]
-            createMachine = MachineNode(stateName,stateStatus,self.acceptableInputs)
-            if self.headNode is None:
+            createMachine = MachineNode(stateName, stateStatus, self.acceptableInputs)
+            if not self.headNode:
                 self.headNode = createMachine
-            keepMachines.update([(stateName,createMachine)])
+            keepMachines.update([(stateName, createMachine)])
         for transitionDef in transitions.split(','):
             transitionDefPartial = transitionDef.split(':')
             if len(transitionDefPartial) != 3:
@@ -33,15 +33,15 @@ class FiniteStateMachine(object):
         self.currentNode = self.headNode
     
     def execute(self, executionString):
-        for charIndex in range(0,len(executionString)):
-            inputCharacter = executionString[charIndex] 
+        for inputCharacter in executionString:
             if inputCharacter not in self.acceptableInputs:
                 raise Exception('Invalid input')
             self.currentNode = self.currentNode.getNodeFromInput(inputCharacter)
         return self.currentNode.getStatus()       
     
     
-class MachineNode(object):
+class MachineNode:
+    
         def __init__(self, nodeName, nodeStatus, inputs):
             self.nodeName = nodeName
             self.nodeStatus = nodeStatus

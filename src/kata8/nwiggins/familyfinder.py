@@ -4,7 +4,7 @@ Created on Nov 21, 2010
 @author: nwiggins
 '''
 
-class FamilyTree(object):
+class FamilyTree:
 
     def __init__(self):
         self.familyMemberNodeByName = dict()
@@ -13,14 +13,14 @@ class FamilyTree(object):
     def add_parent_child(self,parent,child):
         parentNode = self.familyMemberNodeByName[parent] if parent in self.familyMemberNodeByName else None
         childNode = self.familyMemberNodeByName[child] if child in self.familyMemberNodeByName else None
-        if parentNode is None:
+        if not parentNode:
             parentNode = FamilyMemberNode(parent)
             self.familyMemberNodeByName[parent] = parentNode
-        if childNode is None:
+        if not childNode:
             childNode = FamilyMemberNode(child)
             self.familyMemberNodeByName[child] = childNode
         parentNode.setChild(childNode)
-        if childNode.getLevelFromNode() is 0:
+        if not childNode.getLevelFromNode():
             if childNode in self.rootNode:
                 self.rootNode.remove(childNode)
             self.rootNode.append(parentNode)
@@ -30,11 +30,11 @@ class FamilyTree(object):
         returner = "STRANGER"
         personNode = self.familyMemberNodeByName[person] if person in self.familyMemberNodeByName else None
         personToRelateNode =  self.familyMemberNodeByName[personToRelate] if personToRelate in self.familyMemberNodeByName else None
-        if personNode is None or personToRelateNode is None:
+        if not personNode or not personToRelateNode:
             return returner
         returner = "RELATED"
         level = personNode.getLevelFromNode() - personToRelateNode.getLevelFromNode()
-        if level is 0:
+        if not level:
             if self.isSibling(personNode,personToRelateNode):
                 return "SIBLING"
             elif self.isCousin(personNode, personToRelateNode):
@@ -59,9 +59,11 @@ class FamilyTree(object):
 
     def isChild(self,person,possibleParent):
         return possibleParent in person.parentNode
+    
     def isSibling(self, person,possibleSibling):
         parent = person.parentNode[0]
         return parent in possibleSibling.parentNode
+    
     def isCousin(self,person,possibleCousin):
         for parent in person.parentNode:
             for possibleCousinsParent in possibleCousin.parentNode:
@@ -73,13 +75,14 @@ class FamilyTree(object):
             if self.isSibling(possibleAuntUncle, possibleSibling):
                 return True
         return False
+    
     def isGrandChild(self,person,possibleGrandParent):
         for parent in person.parentNode:
             if possibleGrandParent in parent.parentNode:
                 return True
         return False
     
-class FamilyMemberNode(object):
+class FamilyMemberNode:
     
     def __init__(self,name):
         self.name = name
@@ -96,9 +99,9 @@ class FamilyMemberNode(object):
         if len(parentNode.childNode) > 0:
             self.parentNode = parentNode.childNode[0].parentNode
         self.parentNode.append(parentNode)
-        self.levelFromNode = parentNode.getLevelFromNode()+1
+        self.levelFromNode = parentNode.getLevelFromNode() + 1
         for child in self.childNode:
             child.setParent(self)
-            
+    
     def getLevelFromNode(self):
         return self.levelFromNode

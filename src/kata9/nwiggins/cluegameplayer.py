@@ -5,7 +5,7 @@ Created on Dec 6, 2010
 '''
 import random
 
-class Game(object):
+class Game:
 
     def __init__(self, suspects, weapons, places):
         self.suspects = suspects
@@ -26,7 +26,7 @@ class Game(object):
             return None
         
         
-class Player(object):
+class Player:
     
     def __init__(self, suspects, weapons, places):
         self.suspects = suspects
@@ -38,7 +38,7 @@ class Player(object):
     
     def solve(self, game):
         nextClue = ''
-        while nextClue != None:
+        while nextClue:
             currentSuspect = self.suspects[self.murderer]
             currentWeapon = self.weapons[self.murderWeapon]
             currentPlace = self.places[self.murderPlace]
@@ -46,8 +46,8 @@ class Player(object):
             if nextClue == currentSuspect:
                 self.murderer += 1
             elif nextClue == currentWeapon:
-                self.murderWeapon +=1
+                self.murderWeapon += 1
             elif nextClue == currentPlace:
-                self.murderPlace +=1
+                self.murderPlace += 1
         return "%s with %s at %s" % (self.suspects[self.murderer], self.weapons[self.murderWeapon], self.places[self.murderPlace])
             

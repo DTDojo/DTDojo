@@ -1,4 +1,5 @@
-class CyclicWords(object):
+class CyclicWords:
+    
     def getCyclicGroupings(self, list):
         listOfGroups = []
         for x in list:
@@ -14,16 +15,15 @@ class CyclicWords(object):
             elif firstNode == valueToTest:
                 return y
             else:
-                for x in range(len(valueToTest)-1):
-                    substr = valueToTest[:(len(valueToTest)-1-x)]
+                for x in range(len(valueToTest) - 1):
+                    substr = valueToTest[:(len(valueToTest) - 1 - x)]
                     indexOfSubStr = firstNode.rfind(substr)
-                    if indexOfSubStr>0:
-                        substr = valueToTest[(len(valueToTest)-1-x):]
+                    if indexOfSubStr:
+                        substr = valueToTest[(len(valueToTest) - 1 - x):]
                         firstNodeSub = firstNode[:indexOfSubStr]
                         if substr == firstNodeSub:
-                            for z in groups[y][1:]:
-                                if z == valueToTest:
-                                    return y
+                            if valueToTest in groups[y][1:]:
+                                return y
                             groups[y].append(valueToTest)
                             return y
         return -1

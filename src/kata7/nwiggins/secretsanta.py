@@ -62,9 +62,9 @@ class SecretSantaGroup(object):
         return tableString
    
     def chooseSecretSanta(self, participant, availableSecretSantaPoolForFam, alreadySecretSantaPool, availableSecretSantas):   
-        if participant.secretSanta != None:
+        if participant.secretSanta:
             return   
-        if len(availableSecretSantaPoolForFam) == 0:
+        if not availableSecretSantaPoolForFam:
             alreadySSPoolList = list(alreadySecretSantaPool)
             rand = random.choice(alreadySSPoolList)
             while(rand.getFamilyName() == participant.getFamilyName()):
@@ -83,5 +83,3 @@ class SecretSantaGroup(object):
             availableSecretSantaPoolForFam.remove(secretSanta)
             availableSecretSantas.discard(secretSanta)
             alreadySecretSantaPool.add(secretSanta)
-        
-            

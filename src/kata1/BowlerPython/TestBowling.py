@@ -4,13 +4,13 @@ Created on Oct 4, 2010
 @author: nwiggins
 '''
 import unittest
-from kata1.Bowler import Bowler
+from Bowler import Bowler
 
 class Test(unittest.TestCase):
 
     def testIncompleteStrikeGame(self):
         incompleteStrikeGame = Bowler()
-        for i in [10,2]:
+        for i in [10, 2]:
             incompleteStrikeGame.rolls(i)
         incompleteStrikeGameScore = incompleteStrikeGame.currentScore()
         if incompleteStrikeGameScore == 0:
@@ -20,7 +20,7 @@ class Test(unittest.TestCase):
         
     def testCompleteStrikeGame(self):
         completeStrikeGame = Bowler()
-        for i in [10,2,2]:
+        for i in [10, 2, 2]:
             completeStrikeGame.rolls(i)
         completeStrikeGameScore = completeStrikeGame.currentScore()
         if completeStrikeGameScore == 18:

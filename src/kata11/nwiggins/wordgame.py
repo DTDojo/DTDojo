@@ -7,7 +7,7 @@ Created on Dec 20, 2010
 """
 #
 from collections import deque
-class WordGame(object):
+class WordGame:
 
     def __init__(self):
         self.fourLetterMap = self.createNodeMap('../fourletterwords.txt')
