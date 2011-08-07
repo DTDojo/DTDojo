@@ -30,12 +30,12 @@ class SudokuSolver:
     
 class Tile:
     def __init__(self, row, column):
-        self.possibleValues = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        self.possibleValues = range(1, 10)
         self.row = row
         self.column = column
         
     def removeValueFromPossibleValues(self, value):
-        if self.possibleValues.count(value) > 0:
+        if value in self.possibleValues:
             self.possibleValues.remove(value) 
             return True
         return False
@@ -88,28 +88,23 @@ class Board:
         
     def setKnownValues(self, knownValues):
         lines = knownValues.splitlines()
-        for row in range(0, 9):
-            line = lines[row]
-            for column in range(0, 9):
-                valueString = line[column]
+        for row, line in enumerate(lines):
+            for column, valueString in enumerate(line):
                 if valueString != 'x':
                     value = int(valueString)
                     tile = self.board[row][column]
                     tile.setTileToValue(value)
-                    affectedTiles = list(set(self.updateGroupsByTile(tile)))
-                    while len(affectedTiles) > 0:
-                        affectedTiles.extend(self.updateGroupsByTile(affectedTiles[0]))
-                        del affectedTiles[0]
-                        affectedTiles = list(set(affectedTiles))
+                    affectedTiles = self.updateGroupsByTile(tile)
+                    while affectedTiles:
+                        affectedTiles |= self.updateGroupsByTile(affectedTiles.pop())
 
     def updateGroupTilesOnFunction(self, applyRule):
-        tilesUpdated = list()
-        for row in range(0, 9):
-            for column in range(0, 9):
-                tile = self.board[row][column]
+        tilesUpdated = set()
+        for row in self.board:
+            for tile in row:
                 groupList = self.tileToGroups[tile]
                 for group in groupList:
-                    tilesUpdated.extend(applyRule(group))
+                    tilesUpdated |= applyRule(group)
         self.updateAffectedTiles(tilesUpdated)
             
     def findUniqueValues(self):
@@ -124,59 +119,48 @@ class Board:
             
     def updateGroupsByTile(self, tile):
         groupList = self.tileToGroups[tile]
-        tilesUpdated = list()
+        tilesUpdated = set()
         for group in groupList:
-            tilesUpdated.extend(group.removeFromRestOfGroup(tile))
-        return list(set(tilesUpdated))
+            tilesUpdated |= group.removeFromRestOfGroup(tile)
+        return tilesUpdated
 
     def updateAffectedTiles(self, tilesUpdated):
-        affectedTiles = list(set(tilesUpdated))
-        while len(affectedTiles) > 0:
-            affectedTiles.extend(self.updateGroupsByTile(affectedTiles[0]))
-            del affectedTiles[0]
-            affectedTiles = list(set(affectedTiles))
-
+        affectedTiles = tilesUpdated
+        while affectedTiles:
+            affectedTiles |= (self.updateGroupsByTile(affectedTiles.pop()))
+            
     def useGroupsToRefine(self):
-        tilesUpdated = list()
-        for row in range(0, 3):
-            for column in range(0, 3):
-                driverGroup = self.blockGroup[row][column]
+        tilesUpdated = set()
+        for rowIndex, row in enumerate(self.blockGroup):
+            for columnIndex, driverGroup in enumerate(row):
                 checkGroups = list()
-                checkGroups.append(self.blockGroup[row][(column + 1) % 3])
-                checkGroups.append(self.blockGroup[row][(column + 2) % 3])
-                solvedTiles = list()
+                checkGroups.append(row[(columnIndex + 1) % 3])
+                checkGroups.append(row[(columnIndex + 2) % 3])
+                solvedTilesForValue = dict()
                 for group in checkGroups:
-                    solvedTiles.extend(group.getSolvedTiles())
-                solvedTilesMap = dict()
-                for x in range(1, 10):
-                    solvedTilesMap[x] = list()
-                for solvedTile in solvedTiles:
-                    value = solvedTile.getPossibleValues()[0]
-                    solvedTilesMap[value].append(solvedTile)
-                for tileValue in solvedTilesMap.keys():
-                    if len(solvedTilesMap[tileValue]) == 2:
-                        rowSet = [1, 2, 3]
-                        rowSet.remove(((solvedTilesMap[tileValue][0].getTileRow() - 1) % 3) + 1)
-                        rowSet.remove(((solvedTilesMap[tileValue][1].getTileRow() - 1) % 3) + 1)
-                        tilesUpdated.extend(driverGroup.findOnlyValueForRow(tileValue, (row * (rowSet[0] - 1) + rowSet[0]), column))
+                    for solvedTile in group.getSolvedTiles():
+                        value = solvedTile.getPossibleValues()[0]
+                        solvedTilesForValue.setdefault(value, list()).append(solvedTile)
+                for tileValue, solvedTiles in solvedTilesForValue.items():
+                    if len(solvedTiles) == 2:
+                        rowSet = range(1, 4)
+                        rowSet.remove(((solvedTiles[0].getTileRow() - 1) % 3) + 1)
+                        rowSet.remove(((solvedTiles[1].getTileRow() - 1) % 3) + 1)
+                        tilesUpdated |= driverGroup.findOnlyValueForRow(tileValue, (rowIndex * (rowSet[0] - 1) + rowSet[0]), columnIndex)
                 checkGroups = list()
-                checkGroups.append(self.blockGroup[(row + 1) % 3][column])
-                checkGroups.append(self.blockGroup[(row + 2) % 3][column])
-                solvedTiles = list()
+                checkGroups.append(self.blockGroup[(rowIndex + 1) % 3][columnIndex])
+                checkGroups.append(self.blockGroup[(rowIndex + 2) % 3][columnIndex])
+                solvedTilesForValue = dict()
                 for group in checkGroups:
-                    solvedTiles.extend(group.getSolvedTiles())
-                solvedTilesMap = dict()
-                for x in range(1, 10):
-                    solvedTilesMap[x] = list()
-                for solvedTile in solvedTiles:
-                    value = solvedTile.getPossibleValues()[0]
-                    solvedTilesMap[value].append(solvedTile)
-                for tileValue in solvedTilesMap.keys():
-                    if len(solvedTilesMap[tileValue]) == 2:
-                        columnSet = [1, 2, 3]
-                        columnSet.remove(((solvedTilesMap[tileValue][0].getTileColumn() - 1) % 3) + 1)
-                        columnSet.remove(((solvedTilesMap[tileValue][1].getTileColumn() - 1) % 3) + 1)
-                        tilesUpdated.extend(driverGroup.findOnlyValueForColumn(tileValue, (column * (columnSet[0] - 1) + columnSet[0]), row))
+                    for solvedTile in group.getSolvedTiles():
+                        value = solvedTile.getPossibleValues()[0]
+                        solvedTilesForValue.setdefault(value, list()).append(solvedTile)
+                for tileValue, solvedTiles in solvedTilesForValue.items():
+                    if len(solvedTiles) == 2:
+                        columnSet = range(1, 4)
+                        columnSet.remove(((solvedTiles[0].getTileColumn() - 1) % 3) + 1)
+                        columnSet.remove(((solvedTiles[1].getTileColumn() - 1) % 3) + 1)
+                        tilesUpdated |= driverGroup.findOnlyValueForColumn(tileValue, (columnIndex * (columnSet[0] - 1) + columnSet[0]), rowIndex)
         self.updateAffectedTiles(tilesUpdated)       
     
     def isSolved(self):
@@ -184,14 +168,11 @@ class Board:
     
     def getBoardString(self):
         strToReturn = ''
-        for row in range(0, 9):
-            for column in range(0, 9):
-                tile = self.board[row][column]
-                value = 'x'
-                if tile.isTileSolved():
-                    value = tile.getPossibleValues()[0]
-                strToReturn = strToReturn + str(value)   
-            strToReturn = strToReturn + '\n'
+        for row in self.board:
+            for tile in row:
+                value = str(tile.getPossibleValues()[0]) if tile.isTileSolved() else 'x'
+                strToReturn = ''.join([strToReturn, value])   
+            strToReturn = ''.join([strToReturn, '\n'])
         return strToReturn
     
     def getColumnPossibleValues(self):
@@ -206,81 +187,70 @@ class Board:
         return strToReturn
 
 class Group:
+    
     def __init__(self):
         self.tiles = list()
         
     def findOnlyValueForSeries(self, value, shouldAppend):
-        rowList = list()
+        returnSet = set()
         for tile in self.tiles:
-            if shouldAppend:
-                rowList.append(tile)
-        if len(rowList) == 1:
-            rowList[0].setTileToValue(value)
-            return rowList
-        else:
-            return list()
+            if shouldAppend(tile):
+                returnSet.add(tile)
+            if len(returnSet) > 1:
+                return set()
+        for tile in returnSet:
+            tile.setTileToValue(value)
+        return returnSet
     
     def findOnlyValueForRow(self, value, row, groupColumnOffset):
         def shouldAppendMethod(tile):
-            if tile.getTileRow() == row and (tile.getTileColumn() / 3) == groupColumnOffset and value in tile.getPossibleValues():
-                return True
-            return False
+            return tile.getTileRow() == row and (tile.getTileColumn() / 3) == groupColumnOffset and value in tile.getPossibleValues()
         return self.findOnlyValueForSeries(value, shouldAppendMethod)
 
     def findOnlyValueForColumn(self, value, column, groupRowOffset):
         def shouldAppendMethod(tile):
-            if tile.getTileColumn() == column and (tile.getTileRow() / 3) == groupRowOffset and value in tile.getPossibleValues():
-                return True
-            return False
+            return tile.getTileColumn() == column and (tile.getTileRow() / 3) == groupRowOffset and value in tile.getPossibleValues()
         return self.findOnlyValueForSeries(value, shouldAppendMethod)
         
     def findOnlyOneInGroup(self):
-        possiblesCount = dict()
-        listOfAffectedTiles = list()
-        for x in range(1, 10):
-            possiblesCount[x] = list()
+        possibleValues = dict()
+        affectedTiles = set()
         for tile in self.tiles:
             for possibles in tile.getPossibleValues():
-                possiblesCount[possibles].append(tile)
-        for key in range(1, 10):
-            if len(possiblesCount[key]) == 1:
-                tile = possiblesCount[key][0]
-                if tile.isTileSolved() == False:
+                possibleValues.setdefault(possibles, list()).append(tile)
+        for key, possible in possibleValues.items():
+            if len(possible) == 1:
+                tile = possible[0]
+                if not tile.isTileSolved():
                     tile.setTileToValue(key)
-                    listOfAffectedTiles.append(tile)
+                    affectedTiles.add(tile)
+        return affectedTiles
+    
+    def removeFromRestOfGroup(self, driverTile):
+        listOfAffectedTiles = set()
+        if driverTile.isTileSolved():
+            value = driverTile.getPossibleValues()[0]
+            for tile in self.tiles:
+                if tile != driverTile and tile.removeValueFromPossibleValues(value):
+                    listOfAffectedTiles.add(tile)
         return listOfAffectedTiles
     
-    def removeFromRestOfGroup(self, solvedTile):
-        listOfAffectedTiles = list()
-        if solvedTile.isTileSolved():
-            value = solvedTile.getPossibleValues()[0]
-            for tile in self.tiles:
-                if tile != solvedTile and tile.removeValueFromPossibleValues(value):
-                    listOfAffectedTiles.append(tile)
-        return list(set(listOfAffectedTiles))
-    
     def applyRuleOfK(self):
-        mapOfPossiblesToTiles = dict()
-        listOfAffectedTiles = list()
+        possibilitiesForTiles = dict()
+        listOfAffectedTiles = set()
         for tile in self.tiles:
-            if tile.isTileSolved() == False:
+            if not tile.isTileSolved():
                 possibleValues = tile.getPossibleValues()
-                possiblesForTile = self.getStringForList(possibleValues)
-                key = mapOfPossiblesToTiles.get(possiblesForTile)
-                if key == None:
-                    mapOfPossiblesToTiles[possiblesForTile] = list()
-                mapOfPossiblesToTiles[possiblesForTile].append(tile)
-        myKeys = mapOfPossiblesToTiles.keys()
-        myKeys = list(myKeys)
-        for keys in myKeys:
-            tilesList = mapOfPossiblesToTiles[keys]
-            keysList = keys.split(',')
-            if tilesList != None and keysList != None and len(tilesList) == len(keysList):
+                possibilitiesForTile = self.getStringForList(possibleValues)
+                possibilitiesForTiles.setdefault(possibilitiesForTile, set()).add(tile)
+        for key, tilesList in possibilitiesForTiles.items():
+            keysList = key.split(',')
+            if tilesList and keysList and len(tilesList) == len(keysList):
                 for value in keysList:
                     value = int(value)
-                    for tile in (set(self.tiles).difference(tilesList)):
+                    for tile in (set(self.tiles) - tilesList):
                         tile.removeValueFromPossibleValues(value)
-                        listOfAffectedTiles.append(tile)
+                        listOfAffectedTiles.add(tile)
         return listOfAffectedTiles
         
     def addTileToGroup(self, tile):
@@ -294,9 +264,10 @@ class Group:
         return solvedTiles
     
     def getStringForList(self, list):
-        listString = ''
+        listString = None
         for tuple in list:
-            if listString != '':
-                listString += ','
-            listString += str(tuple)
+            if not listString:
+                listString = str(tuple)
+            else:
+                listString = ','.join([listString, str(tuple)])
         return listString
