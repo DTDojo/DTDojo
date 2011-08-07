@@ -39,7 +39,7 @@ class WordGame(object):
             return None
         minDistance = sum(x != y for x, y in zip(begin, end))
         if not minDistance:
-            return [(begin)]
+            return [begin]
         successorMap = {}
         successorMap[begin] = begin
         queue = deque([begin])
@@ -50,7 +50,7 @@ class WordGame(object):
                 startsWithMap = currentNodeSubMap['startsWith']
                 endsWithMap = currentNodeSubMap['endsWith']
                 currentNodeSubMap['adjacentEdges'] = self.getAdjacentNodes(currentNode, startsWithMap, endsWithMap)
-            adjacentEdges = list(currentNodeSubMap["adjacentEdges"]) 
+            adjacentEdges = currentNodeSubMap["adjacentEdges"]
             for x in adjacentEdges:
                 if x not in successorMap:
                     successorMap[x] = currentNode

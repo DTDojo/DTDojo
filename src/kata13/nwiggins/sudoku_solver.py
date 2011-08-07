@@ -171,19 +171,16 @@ class Board:
         for row in self.board:
             for tile in row:
                 value = str(tile.getPossibleValues()[0]) if tile.isTileSolved() else 'x'
-                strToReturn = ''.join([strToReturn, value])   
-            strToReturn = ''.join([strToReturn, '\n'])
+                strToReturn += value   
+            strToReturn += '\n'
         return strToReturn
     
     def getColumnPossibleValues(self):
         strToReturn = ''
-        for row in range(0, 9):
-            for column in range(0, 9):
-                tile = self.board[row][column]
-                strToReturn = strToReturn + 'row=' + str(row + 1) 
-                strToReturn = strToReturn + ';column=' + str(column + 1)
-                strToReturn = strToReturn + ':' + str(tile.getPossibleValues())   
-                strToReturn = strToReturn + '\n'
+        for rowIndex, row in enumerate(self.board):
+            for columnIndex, tile in enumerate(row):
+                strToReturn += 'row=%(rowNumber)d;column=%(columnNumber)d:%(possibleValues)s\n' % \
+                            {"rowNumber": rowIndex + 1, "columnNumber": columnIndex + 1, "possibleValues":tile.getPossibleValues()}
         return strToReturn
 
 class Group:
